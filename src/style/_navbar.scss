@@ -1,0 +1,52 @@
+@import 'theme';
+
+.nav-wrapper {
+  width: 100%;
+  justify-content: center;
+  background: $bgDark;
+  padding: 25px;
+
+  a {
+    text-decoration: none;
+    color: $bgDark;
+    font-family: $oswald;
+    display: inline-block;
+    color: #ffffff;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .brand-logo {
+      font-size: 28px;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+
+      li {
+        margin-left: 25px;
+        font-size: 20px;
+      }
+
+      .user-logo {
+        background: $primaryVariant;
+        color: #ffffff;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

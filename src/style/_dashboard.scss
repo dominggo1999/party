@@ -1,0 +1,47 @@
+.dashboard-wrapper {
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    .col-left {
+      width: 65%;
+    }
+
+    .col-right {
+      width: 30%;
+    }
+
+    .project-card {
+      background: $bgDark;
+      margin-top: 30px;
+      padding: 20px;
+
+      .project-title {
+        display: inline-block;
+        font-family: $oswald;
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+
+      .posted-by,
+      .project-date,
+      .project-content {
+        font-family: $roboto;
+      }
+    }
+
+    .project-detail {
+      width: 100%;
+
+      .project-title.big {
+        font-size: 35px;
+      }
+
+      .project-content {
+        font-size: 18px;
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+    }
+  }
+}
