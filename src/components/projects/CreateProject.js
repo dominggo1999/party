@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import createProject from '../../store/actions/projectActions';
 
-const SignIn = () => {
-  const [userInput, setUserInput] = useState({
-    title: '',
-    content: '',
-  });
+const initialInputValue = {
+  title: '',
+  content: '',
+};
+
+const SignIn = (props) => {
+  const [userInput, setUserInput] = useState(initialInputValue);
 
   const handleChange = (e) => {
     setUserInput({
@@ -15,7 +19,8 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userInput);
+    props.createProject(userInput);
+    setUserInput(initialInputValue);
   };
 
   return (
@@ -31,6 +36,7 @@ const SignIn = () => {
             type="text"
             id="title"
             onChange={handleChange}
+            value={userInput.title}
           />
         </div>
         <div className="input-field">
@@ -41,13 +47,20 @@ const SignIn = () => {
             onChange={handleChange}
             cols="30"
             rows="10"
+            value={userInput.content}
           >
           </textarea>
         </div>
-        <button type="submit">Sign In</button>
+        <button type="submit">Create Party</button>
       </form>
     </div>
   );
 };
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createProject: (project) => dispatch(createProject(project)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SignIn);

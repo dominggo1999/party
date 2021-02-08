@@ -55,7 +55,7 @@ form {
   }
 
   input:-webkit-autofill {
-    -webkit-background-clip: text;
+    background-clip: text;
   }
 
   textarea {
@@ -68,4 +68,12 @@ form {
       border-color: $primaryVariant;
     }
   }
+}
+
+.loading {
+  font-family: $oswald;
+  color: $bgDark;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
 }

@@ -1,20 +1,45 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import convertSecondsToDate from '../../util';
 
-const ProjectDetails = (props) => {
-  const id = props.match.params.id;
+const ProjectDetails = ({ project }) => {
+  if (project) {
+    const {
+      title, authorFirstname, authorLastname, content, createdId,
+    } = project;
 
-  return (
-    <div className="dashboard-wrapper">
-      <div className="container">
-        <div className="project-card project-detail">
-          <span className="project-title big">Project title {id}</span>
-          <p className="project-content ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quae quidem quisquam eius veniam iusto unde odit non temporibus, voluptatum nesciunt laudantium deleniti debitis rem, fugit aperiam animi alias earum quo? Dolor nostrum aut earum voluptas quas? Impedit laudantium doloremque fugit vitae esse nemo. Reprehenderit odit officiis eligendi quidem tenetur quas et, vitae libero quisquam repellat quo, explicabo natus. Sequi odit, quibusdam quos eius saepe sed at iure perspiciatis, quae facilis repellendus, deleniti ut et doloremque minima natus accusantium reprehenderit porro vitae molestiae! In unde expedita pariatur natus eos praesentium ducimus blanditiis aliquam nostrum, repudiandae, mollitia autem tempore necessitatibus reiciendis?</p>
-          <p className="posted-by">Posted by Arnold</p>
-          <p className="project-date">1st January , 2022</p>
+    return (
+      <div className="dashboard-wrapper">
+        <div className="container">
+          <div className="project-card project-detail">
+            <span className="project-title big">{title}</span>
+            <p className="project-content ">{content}</p>
+            <p className="posted-by">Posted by {authorFirstname} {authorLastname}</p>
+            <p className="project-date">{convertSecondsToDate(createdId.seconds)}</p>
+          </div>
         </div>
       </div>
-    </div>
+    );
+  }
+  return (
+    <div className="loading">loading...</div>
   );
 };
 
-export default ProjectDetails;
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.id;
+  const projects = state.firestore.data.projects;
+  const project = projects ? projects[id] : null;
+  return {
+    project,
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: 'projects' },
+  ]),
+)(ProjectDetails);

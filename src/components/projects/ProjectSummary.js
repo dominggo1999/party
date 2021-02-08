@@ -1,12 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import convertSecondsToDate from '../../util';
 
-const ProjectSummary = () => {
+const ProjectSummary = ({ project }) => {
+  const {
+    title, authorFirstname, authorLastname, createdId,
+  } = project;
+
   return (
-    <div className="project-card">
-      <span className="project-title">Project title</span>
-      <p className="posted-by">Posted by</p>
-      <p className="project-date">1st January , 2022</p>
-    </div>
+    <Link
+      to={`project/${project.id}`}
+      className="project-card"
+    >
+      <span className="project-title">{title}</span>
+      <p className="posted-by">Posted by {authorFirstname} {authorLastname}</p>
+      <p className="project-date">{convertSecondsToDate(createdId.seconds)}</p>
+    </Link>
   );
 };
 

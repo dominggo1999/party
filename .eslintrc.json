@@ -39,6 +39,8 @@
     "max-len": ["error", { "code": 1000 }],
     "react/destructuring-assignment": 0,
     "prefer-destructuring": 0,
-    "jsx-a11y/label-has-associated-control": 0
+    "jsx-a11y/label-has-associated-control": 0,
+    "consistent-return": 0,
+    "react/jsx-props-no-spreading": 0
   }
 }

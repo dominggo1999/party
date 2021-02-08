@@ -12,6 +12,9 @@
     }
 
     .project-card {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
       background: $bgDark;
       margin-top: 30px;
       padding: 20px;
